@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
-# Create your views here.
+
+class HelloWorldAPIView(APIView):
+    def get(self, request):
+        return Response(data={"message": "hello world"})
+    
+    def post(self, request):
+        message = f'Hello {request.data['name']} welcome to pdp university'
+        return Response(data={"greetings": message})
