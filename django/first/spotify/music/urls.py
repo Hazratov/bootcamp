@@ -1,6 +1,6 @@
-from .views import HelloWorldAPIView
+from .views import SongAPIView
 from django.urls import path
 
 urlpatterns = [
-    path('hello-world/', HelloWorldAPIView.as_view(), name="Hello world")
+    path('songs/', SongAPIView.as_view(), name="songs")
 ]
