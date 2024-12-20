@@ -4,12 +4,14 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 class Todo(models.Model):
-    NEW = 'new'
-    FINISHED = 'finished'
+    NEW = "new"
+    FINISHED = "finished"
+
     STATUS = [
-        (NEW,'new'),
-        (FINISHED,'finished')
+        (NEW, "new"),
+        (FINISHED, "finished"),
     ]
+    
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="todo")
     title = models.CharField(max_length=155)
     description = models.CharField(max_length=512)
@@ -23,4 +25,6 @@ class Todo(models.Model):
     def mark_as_unfinished(self):
         self.status = self.NEW
         self.save()
+
+    
 
