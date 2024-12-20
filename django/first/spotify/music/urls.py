@@ -1,6 +1,16 @@
-from .views import SongAPIView
-from django.urls import path
+from .views import SongViewSet, AlbumViewSet, ArtistViewSet
+from django.urls import path, include
+
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+
+router.register('songs', SongViewSet)
+router.register('albums', AlbumViewSet)
+router.register('artists', ArtistViewSet)
+    
+
 
 urlpatterns = [
-    path('songs/', SongAPIView.as_view(), name="songs")
+    path('', include(router.urls))
 ]
