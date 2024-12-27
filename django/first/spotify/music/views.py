@@ -9,6 +9,8 @@ from rest_framework.decorators import action
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework import status
 from django.db import transaction
+from rest_framework import filters
+
 # class SongAPIView(APIView):
 #     def get(self, request):
 #         Songs = Song.objects.all()
@@ -30,6 +32,9 @@ class SongViewSet(ModelViewSet):
     queryset = Song.objects.all()
     serializer_class = SongSerializer
     pagination_class = LimitOffsetPagination
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    ordering_fields = ["listened", "-listened"]
+    search_fields = ["title", "album__artist__name", "album__title"]
 
     @action(detail=True, methods=['POST'])
     def listen(self, request, *arg, **kwargs):
