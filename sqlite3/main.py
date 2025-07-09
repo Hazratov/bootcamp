@@ -36,8 +36,15 @@ def delete(user_id):
     ''',(user_id,))
     conn.commit()
 
+def update(user_id, name):
+    cursor.execute('''
+        update users set name = ? where user_id = ?
+    ''', (name, user_id))
+    conn.commit()
+
 
 #create_table()
 #insert('Akbar', 'Akbar@gmail.com')
-delete(1)
+#delete(1)
+update(2, "Shaxina")
 print(select_all())
